@@ -1,27 +1,18 @@
-import { Navigate } from "react-router-dom";
-import { ReactNode, useEffect } from "react";
+// ProtectRoutes.js
+import React, { ReactNode } from "react";
+import { Navigate, RouteProps } from "react-router-dom";
 import { useAuthContext } from "../../auth/AuthContext";
 
-interface PropsChildren {
+interface ProtectedRouteProps extends Omit<RouteProps, "element"> {
   children: ReactNode;
 }
 
-const ProtectionRoute = ({ children }: PropsChildren) => {
-  const { user, setUser } = useAuthContext();
-
-  useEffect(() => {
-    const storedUser = localStorage.getItem("authenticatedUser");
-
-    if (storedUser && !user) {
-      setUser(JSON.parse(storedUser));
-    }
-  }, [user, setUser]);
+const ProtectedRoute: React.FC<ProtectedRouteProps> = () => {
+  const { user } = useAuthContext();
 
   if (!user) {
-    return <Navigate to={"/"} />;
+    return <Navigate to="/" />;
   }
-
-  return children;
 };
 
-export default ProtectionRoute;
+export default ProtectedRoute;

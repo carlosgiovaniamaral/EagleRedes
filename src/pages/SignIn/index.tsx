@@ -9,12 +9,12 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import ValidationError from "../../components/validation-error/ValidationError";
 import { isEmailValid } from "../../helpers/EmailHelper";
 import AuthService from "../../services/AuthService";
 import { useNavigate } from "react-router-dom";
 import LogoEagle from "../../assets/logo.png";
-
+import EmailIcon from "@mui/icons-material/Email";
+import LockIcon from "@mui/icons-material/Lock";
 type LoginPageProps = {
   authService: AuthService;
 };
@@ -77,6 +77,7 @@ export default function SignIn(props: LoginPageProps) {
           alignItems: "center",
           justifyContent: "center",
           minHeight: "100vh",
+          minWidth: "100vw",
         }}
       >
         <CssBaseline />
@@ -129,13 +130,13 @@ export default function SignIn(props: LoginPageProps) {
                 })
               }
               data-testid="email"
-            />
-            <ValidationError
-              hasChanged={form.email.hasChanged}
-              errorMessage="Email é obrigatório"
-              testId="email-required"
-              type="required"
-              value={form.email.value}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <EmailIcon />
+                  </InputAdornment>
+                ),
+              }}
             />
 
             <TextField
@@ -159,6 +160,11 @@ export default function SignIn(props: LoginPageProps) {
               }
               data-testid="password"
               InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <LockIcon />
+                  </InputAdornment>
+                ),
                 endAdornment: (
                   <InputAdornment position="end">
                     <IconButton
@@ -171,7 +177,6 @@ export default function SignIn(props: LoginPageProps) {
                 ),
               }}
             />
-
             <Button
               type="submit"
               fullWidth

@@ -1,12 +1,11 @@
+import { User } from "firebase/auth";
+import { createContext } from "react";
 
-import { createContext, useContext } from "react";
 
-export const AuthContext = createContext(null as any);
+export type AuthContextType = {
+  user: User | null;
+  signin: (email: string, password: string) => Promise<boolean>;
+  signout: () => void;
+};
 
-export function useAuthContext() {
-    const context = useContext(AuthContext);
-    if (context === undefined) {
-        throw new Error("Fora do AuthProvider");
-    }
-    return context;
-}
+export const AuthContext = createContext<AuthContextType>(null!);
