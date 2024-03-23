@@ -10,11 +10,11 @@ import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { isEmailValid } from "../../helpers/EmailHelper";
-import AuthService from "../../services/AuthService";
 import { useNavigate } from "react-router-dom";
 import LogoEagle from "../../assets/logo.png";
 import EmailIcon from "@mui/icons-material/Email";
 import LockIcon from "@mui/icons-material/Lock";
+import AuthService from "../../auth/AuthService";
 type LoginPageProps = {
   authService: AuthService;
 };

@@ -1,16 +1,17 @@
 import React from "react";
-import ReactDOM from "react-dom";
-import AuthService from "./services/AuthService";
-import AuthProvider from "./auth/AuthProvider";
+
 import App from "./App";
 import GlobalStyle from "./GlobalStyle";
+import { createRoot } from "react-dom/client";
 
-ReactDOM.render(
-  <React.StrictMode>
-    <AuthProvider authService={new AuthService()}>
+const rootElement = document.getElementById("root");
+if (rootElement) {
+  createRoot(rootElement).render(
+    <React.StrictMode>
       <GlobalStyle />
       <App />
-    </AuthProvider>
-  </React.StrictMode>,
-  document.getElementById("root")
-);
+    </React.StrictMode>
+  );
+} else {
+  console.error("Element with id 'root' not found in the document.");
+}
