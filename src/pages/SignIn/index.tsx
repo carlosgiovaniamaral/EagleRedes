@@ -144,7 +144,7 @@ export default function SignIn(props: LoginPageProps) {
               required
               fullWidth
               name="password"
-              label="Sua Senha"
+              label="Sua senha"
               type={showPassword ? "text" : "password"}
               id="password"
               autoComplete="current-password"
@@ -158,7 +158,7 @@ export default function SignIn(props: LoginPageProps) {
                   },
                 })
               }
-              data-testid="password"
+              data-testid="senha"
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
